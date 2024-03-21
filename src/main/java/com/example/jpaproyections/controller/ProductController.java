@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.jpaproyections.entity.Product;
+import com.example.jpaproyections.projection.classbased.ProductDTO;
 import com.example.jpaproyections.projection.interfacebased.closed.ProductClosedView;
 import com.example.jpaproyections.service.ProductService;
 
@@ -35,5 +36,26 @@ public class ProductController {
 	public Optional<ProductClosedView> findProductById(@PathVariable Long idProduct){
 		return productService.findProductById(idProduct);
 	}
+	
+	// Class View Based
+	@GetMapping("/findProductClassBassed")
+	public List<ProductDTO> findProductClassBassed(){
+		return productService.findProductBy();
+	}
+	
+	//  View Dynamic
+	
+	@GetMapping("/findProductByBrandynamicClosedView/{brand}")
+	public ProductClosedView findProductByBrandynamicClosedView (@PathVariable String brand) {
+		return productService.findByBrandDynamicClosedView(brand);
+	}
+	
+	@GetMapping("/findProductByBrandynamicClassBased/{brand}")
+	public ProductDTO findProductByBrandynamicClassBased (@PathVariable String brand) {
+		return productService.findByBrandDynamicClassBased(brand);
+	}
+	
+	
+	
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.jpaproyections.entity.Product;
+import com.example.jpaproyections.projection.classbased.ProductDTO;
 import com.example.jpaproyections.projection.interfacebased.closed.ProductClosedView;
 import com.example.jpaproyections.repository.ProductRepository;
 import com.example.jpaproyections.service.ProductService;
@@ -32,6 +33,23 @@ public class ProductServiceImpl implements ProductService {
 	public Optional<ProductClosedView> findProductById(Long idProduct) {
 		// TODO Auto-generated method stub
 		return productRepository.findProductById(idProduct);
+	}
+
+	@Override
+	public List<ProductDTO> findProductBy() {
+		return productRepository.findProductBy();
+	}
+
+	@Override
+	public ProductClosedView findByBrandDynamicClosedView(String brand) {
+		ProductClosedView productClosedView = productRepository.findProductByBrand(brand, ProductClosedView.class);
+		return productClosedView;
+	}
+
+	@Override
+	public ProductDTO findByBrandDynamicClassBased(String brand) {
+		ProductDTO productDTO = productRepository.findProductByBrand(brand, ProductDTO.class);
+		return productDTO;
 	}
 
 }
