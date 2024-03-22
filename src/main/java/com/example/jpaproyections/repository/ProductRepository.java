@@ -23,4 +23,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	// Parametro type = tipo de objeto que quiero que retorne
 	<T> T findProductByBrand(String brand, Class<T> type);
+
+	
+	
 }
