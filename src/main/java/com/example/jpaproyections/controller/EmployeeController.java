@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.jpaproyections.entity.Employee;
+import com.example.jpaproyections.projection.classbased.RequestDTO;
 import com.example.jpaproyections.projection.classbased.SpecificationInputDTO;
 import com.example.jpaproyections.service.EmployeeService;
 
@@ -41,5 +42,15 @@ public class EmployeeController {
 	@GetMapping("/ByGreaterThanEqual")
 	List<Employee> byGreaterThanEqual(@RequestBody SpecificationInputDTO specDTO){
 		return employeeService.getEmployeeByGreaterThan(specDTO);
+	}
+	
+	@GetMapping("/ByGreaterThanEqualDelete")
+	long byGreaterThanEqualDelete(@RequestBody SpecificationInputDTO specDTO){
+		return employeeService.getEmployeeByGreaterThanDelete(specDTO);
+	}
+	
+	@GetMapping("/ByList")
+	List<Employee> byList(@RequestBody RequestDTO specDTO){
+		return employeeService.getDetailsFromList(specDTO.getSpecificationList(), specDTO.getOverallOperation());
 	}
 }

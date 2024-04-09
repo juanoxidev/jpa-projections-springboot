@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -31,5 +33,8 @@ public class Employee {
 	private Date obj;
 	@Enumerated(EnumType.STRING)
 	private Subject skill;
+	@OneToOne
+	@JoinColumn(name="address_id", referencedColumnName = "id")
+	private Address address;
 	
 }
